@@ -5,11 +5,22 @@ import { getWordsFromGist } from '../../services/words';
 class Words extends Component {
   static propTypes = {
     words: PropTypes.arrayOf(PropTypes.string).isRequired,
-    changeWords: PropTypes.func.isRequired
+    changeWords: PropTypes.func.isRequired,
+    search: PropTypes.string.isRequired
   }
 
   componentDidMount() {
-    getWordsFromGist()
+    this.loadWords(this.props.search, 10);
+  }
+
+  componentDidUpdate(prevProps) {
+    if(prevProps.search !== this.props.search) {
+      this.loadWords(this.props.search, 10);
+    }
+  }
+
+  loadWords(search, limit) {
+    getWordsFromGist(search, limit)
       .then(res => {
         this.props.changeWords(res);
       });
