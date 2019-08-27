@@ -10,12 +10,12 @@ class Words extends Component {
   }
 
   componentDidMount() {
-    this.loadWords(this.props.search, 10);
+    this.loadWords(this.props.search, 1000);
   }
 
   componentDidUpdate(prevProps) {
     if(prevProps.search !== this.props.search) {
-      this.loadWords(this.props.search, 10);
+      this.loadWords(this.props.search, 1000);
     }
   }
 
