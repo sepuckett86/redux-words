@@ -1,18 +1,31 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { getWordsFromGist } from '../../services/words';
 
-function Words({ words }) {
-  const wordElements = words.map((word, i) => (
-    <li key={i}>{word}</li>
-  ));
+class Words extends Component {
+  static propTypes = {
+    words: PropTypes.arrayOf(PropTypes.string).isRequired,
+    changeWords: PropTypes.func.isRequired
+  }
 
-  return (
-    <ul>{wordElements}</ul>
-  );
+  componentDidMount() {
+    getWordsFromGist()
+      .then(res => {
+        this.props.changeWords(res);
+      });
+  }
+
+  render() {
+    const { words } = this.props;
+
+    const wordElements = words.map((word, i) => (
+      <li key={i}>{word}</li>
+    ));
+  
+    return (
+      <ul>{wordElements}</ul>
+    );
+  }
 }
-
-Words.propTypes = {
-  words: PropTypes.arrayOf(PropTypes.string).isRequired
-};
 
 export default Words;
