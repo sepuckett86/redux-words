@@ -1,29 +1,33 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { getWordsFromGist } from '../../services/words';
+import { getAllWordsFromGist } from '../../services/words';
 
 class Words extends Component {
   static propTypes = {
     words: PropTypes.arrayOf(PropTypes.string).isRequired,
-    changeWords: PropTypes.func.isRequired,
-    search: PropTypes.string.isRequired
+    updateWords: PropTypes.func.isRequired,
+    search: PropTypes.string.isRequired,
+    loadDictionary: PropTypes.func.isRequired,
+    dictionary: PropTypes.arrayOf(PropTypes.string).isRequired
   }
 
   componentDidMount() {
-    this.loadWords(this.props.search, 10);
+    // getAllWordsFromGist()
+    //   .then(res => {
+    //     this.props.loadDictionary(res);
+    //   });
+    this.filterDictionary();
   }
 
   componentDidUpdate(prevProps) {
     if(prevProps.search !== this.props.search) {
-      this.loadWords(this.props.search, 10);
+      this.filterDictionary();
     }
   }
 
-  loadWords(search, limit) {
-    getWordsFromGist(search, limit)
-      .then(res => {
-        this.props.changeWords(res);
-      });
+  filterDictionary() {
+    const filtered = this.props.dictionary.filter(word => word.includes(this.props.search));
+    this.props.updateWords(filtered);
   }
 
   render() {
