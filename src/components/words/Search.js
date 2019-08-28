@@ -20,9 +20,6 @@ class SearchForm extends Component {
 
   componentDidUpdate(prevProps) {
     if(prevProps.search !== this.props.search) {
-      console.log(this.props.history);
-      console.log(prevProps.search);
-      console.log(this.props.search);
       if(this.props.search === '' || this.props.search === null) {
         this.props.history.push('');
       } else {
