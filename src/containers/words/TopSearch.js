@@ -4,8 +4,10 @@ import { updateWords } from '../../actions/wordsActions';
 import { updateSearch } from '../../actions/searchActions';
 import { getSearch } from '../../selectors/searchSelectors';
 
-const mapStateToProps = state => ({
-  search: getSearch(state)
+const mapStateToProps = (state, props) => ({
+  search: getSearch(state),
+  location: props.location,
+  history: props.history
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -14,6 +16,9 @@ const mapDispatchToProps = dispatch => ({
   },
   handleChange({ target }) {
     dispatch(updateSearch(target.value));
+  },
+  updateSearch(search) {
+    dispatch(updateSearch(search));
   }
 });
 

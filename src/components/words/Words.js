@@ -6,7 +6,7 @@ class Words extends Component {
   static propTypes = {
     words: PropTypes.arrayOf(PropTypes.string).isRequired,
     changeWords: PropTypes.func.isRequired,
-    search: PropTypes.string.isRequired,
+    search: PropTypes.string,
     count: PropTypes.string.isRequired
   }
 
