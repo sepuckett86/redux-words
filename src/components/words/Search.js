@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 
 function SearchForm({ search, handleChange }) {
   return (
-    <input type="text" value={search} onChange={handleChange} ></input>
+    <label>
+      Search: <input type="text" value={search} onChange={handleChange} ></input>
+    </label>
   );
 }
 

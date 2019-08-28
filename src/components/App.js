@@ -1,12 +1,16 @@
 import React from 'react';
-import TopWords from '../containers/words/TopWords';
-import TopSearch from '../containers/words/TopSearch';
+import Home from '../pages/Home';
+
+import {
+  BrowserRouter as Router,
+  Route
+} from 'react-router-dom';
 
 export default function App() {
   return (
-    <>
-      <TopSearch />
-      <TopWords />
-    </>
+    <Router>
+      <Route exact path="/" component={Home}/>
+      <Route path="/words/:count" component={Home}/>
+    </Router>
   );
 }

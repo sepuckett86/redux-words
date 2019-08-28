@@ -6,16 +6,17 @@ class Words extends Component {
   static propTypes = {
     words: PropTypes.arrayOf(PropTypes.string).isRequired,
     changeWords: PropTypes.func.isRequired,
-    search: PropTypes.string.isRequired
+    search: PropTypes.string.isRequired,
+    count: PropTypes.string.isRequired
   }
 
   componentDidMount() {
-    this.loadWords(this.props.search, 1000);
+    this.loadWords(this.props.search, this.props.count);
   }
 
   componentDidUpdate(prevProps) {
     if(prevProps.search !== this.props.search) {
-      this.loadWords(this.props.search, 1000);
+      this.loadWords(this.props.search, this.props.count);
     }
   }
 
