@@ -1,6 +1,16 @@
 import React from 'react';
+import Home from '../pages/Home';
+
+import {
+  BrowserRouter as Router,
+  Route
+} from 'react-router-dom';
 
 export default function App() {
-  return <h1>Hello World</h1>;
+  return (
+    <Router>
+      <Route exact path="/" component={Home}/>
+      <Route path="/words/:count" component={Home}/>
+    </Router>
+  );
 }
-  
